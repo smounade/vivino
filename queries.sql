@@ -41,5 +41,12 @@ SELECT countries.name AS country, AVG(wines.ratings_average) AS avg_rating
 FROM wines JOIN regions ON wines.region_id = regions.id
 JOIN countries ON regions.country_code = countries.code
 GROUP BY country
-ORDER BY avg_rating DESC
-LIMIT 10;
+ORDER BY avg_rating DESC;
+
+SELECT countries.name AS country, AVG(wines.ratings_average) AS avg_rating
+FROM wines JOIN regions ON wines.region_id = regions.id
+JOIN countries ON regions.country_code = countries.code
+JOIN vintages ON wines.id = vintages.wine_id        
+WHERE vintages.id IS NOT NULL
+GROUP BY country
+ORDER BY avg_rating DESC;
